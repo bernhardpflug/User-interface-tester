@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- First screen in doc always acts as start screen -->
+
+	<!-- Scenario element -->
+	<xs:element name="szenario">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element minOccurs="0" maxOccurs="unbounded" ref="screenCollection" />
+					<xs:element minOccurs="0" maxOccurs="unbounded" ref="screen" />
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Screen element -->
+	<xs:element name="screen">
+		<xs:complexType>
+
+			<xs:sequence>
+				<xs:element name="image" type="xs:string" minOccurs="1"
+					maxOccurs="unbounded" />
+
+				<xs:element ref="effect" minOccurs="0" maxOccurs="unbounded" />
+
+				<xs:element name="button" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+
+							<xs:element name="klick" maxOccurs="3">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="type">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="single" />
+													<xs:enumeration value="double" />
+													<xs:enumeration value="twosec" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+
+										<xs:element name="target" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<xs:element ref="bounds" />
+
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<xs:element name="slider" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="left" minOccurs="0"/>
+							<xs:element name="right" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="menuButton" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="menuItem" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="target" type="xs:string" />
+										<xs:element name="text" type="xs:string" />
+										<xs:element name="icon" type="xs:string" minOccurs="0" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="backButton" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="target" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+
+			<xs:attribute name="id" type="xs:string" use="required" />
+		</xs:complexType>
+
+	</xs:element>
+
+	<!-- Screen collection -->
+	<xs:element name="screenCollection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="screen" minOccurs="1" maxOccurs="unbounded" />
+
+			</xs:sequence>
+
+			<xs:attribute name="id" type="xs:string" use="required" />
+
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="xor" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Animation -->
+	<xs:element name="animation">
+		<xs:complexType>
+			<xs:attribute name="duration" type="xs:positiveInteger"
+				use="required" />
+			<xs:attribute name="startDelay" type="xs:nonNegativeInteger" />
+			<xs:attribute name="acceleration" type="xs:decimal" />
+			<xs:attribute name="deceleration" type="xs:decimal" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Bounds -->
+	<xs:element name="bounds">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="x" type="xs:positiveInteger" use="required" />
+			<xs:attribute name="y" type="xs:positiveInteger" use="required" />
+			<xs:attribute name="w" type="xs:positiveInteger" use="required" />
+			<xs:attribute name="h" type="xs:positiveInteger" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Effect -->
+	<xs:element name="effect">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="dialog" />
+				<xs:element ref="infoObjectAssignment" />
+			</xs:choice>
+			<xs:attribute name="occurance" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="onDisplay" />
+						<xs:enumeration value="onDisappear" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ALL EFFECTS -->
+	<xs:element name="dialog">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="animation" minOccurs="0" />
+				<xs:element name="background" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="infoObjectAssignment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="bounds" minOccurs="2" maxOccurs="2" />
+				<xs:element ref="animation" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

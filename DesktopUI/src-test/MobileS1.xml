@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<szenario id="new animal">
+
+	<screen id="1">
+		<image>1.png</image>
+
+		<slider>
+			<right>new animal.2</right>
+		</slider>
+	</screen>
+
+	<screen id="2">
+		<image>2.png</image>
+
+		<button>
+			<klick>
+				<type>single</type>
+				<target>new animal.3</target>
+			</klick>
+			<bounds x="20" y="260" w="100" h="100" />
+
+		</button>
+
+		<slider>
+			<left>new animal.1</left>
+		</slider>
+
+	</screen>
+
+
+	<screen id="3">
+		<image>3.png</image>
+
+		<button>
+			<klick>
+				<type>single</type>
+				<target>new animal.4</target>
+			</klick>
+			<bounds x="10" y="410" w="370" h="95" />
+
+		</button>
+
+		<menuButton>
+			<menuItem>
+				<target>new animal.4</target>
+				<text>asdf</text>
+				<icon></icon>
+			</menuItem>
+		</menuButton>
+
+	</screen>
+
+	<screen id="4">
+
+		<image>4.png</image>
+
+		<effect occurance="onDisplay">
+			<dialog>
+				<background>new animal.3</background>
+			</dialog>
+		</effect>
+
+		<button>
+			<klick>
+				<type>single</type>
+				<target>new animal.5</target>
+			</klick>
+			<bounds x="18" y="80" w="250" h="60" />
+
+		</button>
+
+	</screen>
+
+	<screen id="5">
+		<image>5.png</image>
+
+		<button>
+			<klick>
+				<type>single</type>
+				<target>new animal.6</target>
+			</klick>
+			<bounds x="5" y="565" w="185" h="50" />
+
+		</button>
+
+	</screen>
+
+	<screen id="6">
+		<image>6.png</image>
+
+		<backButton>
+			<target>new animal.homescreen</target>
+		</backButton>
+
+	</screen>
+</szenario>

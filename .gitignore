@@ -1,0 +1,7 @@
+#Ignore all ds_store files
+*.DS_Store
+
+#Ignore all bin folders
+AndroidUI/bin/**/*
+DesktopUI/bin/**/*
+UITesterModel/bin/**/*

@@ -1,0 +1,53 @@
+<project name="Icon Converter" default="deploy" basedir=".">
+
+	<property name="src" value="src" />
+	<property name="imgs" value="imgs" />
+	<property name="lib" value="lib" />
+	<property name="bin" value="antbin" />
+	<property name="jar" value="UITesting.jar" />
+	<property name="deploy" value="${basedir}/deploy" />
+
+	<path id="project.classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="compile">
+		<echo message="${basedir}" />
+		<delete dir="${bin}" />
+		<mkdir dir="${bin}" />
+		<javac srcdir="${src}:${basedir}/../at.mkw.inlocs.laf.nightvision/src:${basedir}/../UITesterModel/src" destdir="${bin}">
+			<classpath refid="project.classpath" />
+		</javac>
+	</target>
+
+	<target name="deploy" depends="compile">
+		<delete dir="${deploy}" />
+		<mkdir dir="${deploy}" />
+		<pathconvert property="jar.classpath" pathsep=" ">
+			<path refid="project.classpath" />
+			<flattenmapper />
+		</pathconvert>
+		<echo message="${jar.classpath}" />
+		<jar destfile="${deploy}/${jar}">
+			<fileset dir="${bin}" />
+
+			<fileset dir="${src}">
+				<include name="imgs/**.png" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="desktopui.general.Launcher" />
+				<attribute name="Class-Path" value="${jar.classpath}" />
+				<attribute name="SplashScreen-Image" value="imgs/splash.png" />
+			</manifest>
+		</jar>
+		<copy todir="${deploy}">
+			<fileset dir="${lib}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+
+	</target>
+
+</project>
