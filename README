@@ -1,0 +1,22 @@
+INTRODUCTION
+------------
+This Java / Android project empowers user interface designers / developers to interactively test user interface sketches / prototypes to end users.
+Defining a workflow within a xml file brings interaction to a set of images where the user switches between them by clicking / touching the screen.
+
+This simulates an interface that looks way more realistic compared to a set of paper prototypes.
+
+CONFIGURATION
+-------------
+This repo contains three eclipse projects.
+The UITesterModel is the core project used by both front end projects. It takes care of the scenario file interpretation and defines all element types that can be used (like slider on a mobile device or dialog on the desktop)
+
+The desktop UI and android UI projects provide the front end for each platform.
+They need to include the model as library project in order to work properly.
+
+EXAMPLES
+------------
+The example folder contains some examples for both desktop and android to see how it works.
+
+CONTRIBUTE
+------------
+There is an endless number of features that would be fabulous to integrate. Feel free to contribute your ideas!

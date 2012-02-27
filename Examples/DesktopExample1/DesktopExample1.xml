@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<szenario id="twitter" device="desktop">
+
+	<screenCollection id="main" type="xor">
+		<screen id="tweets">
+			<image>1.png</image>
+
+			<button> <!-- new tweet button -->
+				<klick>
+					<type>single</type>
+					<target>twitter.newtweet</target>
+				</klick>
+				<bounds x="2" y="594" w="33" h="23" />
+
+			</button>
+
+			<button> <!-- mentions button -->
+				<klick>
+					<type>single</type>
+					<target>twitter.main.mentions</target>
+				</klick>
+				<bounds x="16" y="140" w="39" h="34" />
+
+			</button>
+		</screen>
+
+		<screen id="mentions">
+			<image>2.png</image>
+
+			<button> <!-- new tweet button -->
+				<klick>
+					<type>single</type>
+					<target>twitter.newtweet</target>
+				</klick>
+				<bounds x="2" y="594" w="33" h="23" />
+
+			</button>
+
+			<button> <!-- tweets button -->
+				<klick>
+					<type>single</type>
+					<target>twitter.main.tweets</target>
+				</klick>
+				<bounds x="16" y="103" w="39" h="34" />
+
+			</button>
+		</screen>
+
+	</screenCollection>
+
+	<screen id="newtweet">
+
+		<image>3.png</image>
+
+		<effect occurance="onDisplay">
+			<dialog>
+				<animation duration="2000" startDelay="0" />
+				<background>twitter.main</background>
+			</dialog>
+		</effect>
+
+		<button> <!-- tweet button -->
+			<klick>
+				<type>single</type>
+				<target>twitter.final</target>
+			</klick>
+			<bounds x="277" y="338" w="71" h="27" />
+
+		</button>
+
+		<button> <!-- cancel button -->
+			<klick>
+				<type>single</type>
+				<target>twitter.main</target>
+			</klick>
+			<bounds x="39" y="338" w="71" h="27" />
+
+		</button>
+	</screen>
+
+	<screen id="final">
+
+		<image>4.png</image>
+	</screen>
+
+</szenario>
