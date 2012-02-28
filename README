@@ -13,9 +13,35 @@ The UITesterModel is the core project used by both front end projects. It takes 
 The desktop UI and android UI projects provide the front end for each platform.
 They need to include the model as library project in order to work properly.
 
+GETTING STARTED
+------------
+Create a new folder where you put all your screenshots that are used by this scenario. Then create an xml file with 'scenario' as root element.
+See the example on how it may look like.
+The following rules apply the the xml:
+- a screen element defines one screen on the device
+- the first defined screen is always the start screen
+- each button target has to be referenced by its full path
+- each scenario has to declare a device (mobile scenarios can run on the desktop but NOT vice versa)
+
+NOTE: the xml file has to have the same name as the folder.
+
+Copy the schema file from the example into your folder.
+
+Now give it a try and start the appropriate application to your scenario (desktop/android) and select the folder that contains the scenario.
+
+Notes for desktop:
+The desktop version offers some special keys:
+- d : enables / disables debug mode. It shows all buttons defined within a screen
+- m: enables / disables modify mode. Enables moving / resizing buttons. NOTE: this changes are currently only applied in memory and are not safed back to the xml file. This surfes currently only for easier xml creation as the bounderies are printed in the console.
+
+LIMITATIONS / KNOWN ISSUES
+------------
+- All the screens must have the same resolution
+- Debug mode on Android is not working
+
 EXAMPLES
 ------------
-The example folder contains some examples for both desktop and android to see how it works.
+The example folder contains an example for the desktop to see how it works.
 
 CONTRIBUTE
 ------------
