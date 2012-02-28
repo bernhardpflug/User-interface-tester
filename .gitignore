@@ -1,7 +1,21 @@
 #Ignore all ds_store files
 *.DS_Store
 
-#Ignore all bin folders
-AndroidUI/bin/**/*
-DesktopUI/bin/**/*
-UITesterModel/bin/**/*
+# built application files
+*.apk
+*.ap_
+*.jar
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+#Android
+AndroidUI/bin/
+AndroidUI/gen/
+AndroidUI/local.properties
+
+DesktopUI/bin/
+UITesterModel/bin/
