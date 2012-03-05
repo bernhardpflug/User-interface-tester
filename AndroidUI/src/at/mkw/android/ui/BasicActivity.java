@@ -2,7 +2,9 @@ package at.mkw.android.ui;
 
 import model.Window;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,8 +14,9 @@ import at.mkw.android.ui.view.ScreenView;
 
 public abstract class BasicActivity extends Activity {
 
-	private boolean debug = false;
+	private static boolean debug = false;
 	protected model.Window curScreen;
+	private SharedPreferences sharedPreferences;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public abstract class BasicActivity extends Activity {
 //		
 //		Log.d("avMemory", ""+minfo.availMem);
 		
+
 		requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -50,6 +54,12 @@ public abstract class BasicActivity extends Activity {
 
 			init();
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		setDebug(debug);
 	}
 
 	public abstract void init();
@@ -113,6 +123,7 @@ public abstract class BasicActivity extends Activity {
 		if (item.getTitle().equals("Debug")) {
 
 			debug = !debug;
+			setDebug(debug);
 
 			//TODO enable debugging in subclasses
 			
@@ -124,4 +135,7 @@ public abstract class BasicActivity extends Activity {
 
 		return true;
 	}
+	
+	public abstract void setDebug(boolean debug);
+	
 }
