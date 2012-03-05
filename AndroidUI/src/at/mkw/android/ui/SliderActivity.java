@@ -79,4 +79,12 @@ public class SliderActivity extends BasicActivity {
 		
 		super.onBackPressed();
 	}
+
+	@Override
+	public void setDebug(boolean debug) {
+		for(ScreenView screenView : sliderViews){
+			screenView.setDebug(debug);
+		}
+		
+	}
 }
