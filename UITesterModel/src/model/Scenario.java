@@ -35,6 +35,10 @@ public class Scenario extends ScreenCollection{
 		return ModelUtils.getActiveScreen(getStartElement());
 	}
 	
+	public Screen getScreen(String targetName) {
+		return ModelUtils.getActiveScreen(getTarget(targetName));
+	}
+	
 	private void validateTargets(Window element) {
 		
 		if (element instanceof ScreenCollection) {

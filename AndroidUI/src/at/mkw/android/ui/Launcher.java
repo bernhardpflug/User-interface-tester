@@ -27,7 +27,7 @@ public class Launcher extends Activity implements OnClickListener, DialogInterfa
 	}
 
 	public void onClick(DialogInterface arg0, int arg1) {
-		ConvenienceMethods.startScenarioFromFolder(folderPicker.getPath(), this);
+		ConvenienceMethods.startScenarioFromFolder(folderPicker.getPath(), this,null);
 	}
 	
 	

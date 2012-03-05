@@ -4,11 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 
-import xml.XmlParser;
 import model.ModelUtils;
 import model.Scenario;
+import model.Screen;
 import model.Slider;
 import model.Window;
+import xml.XmlParser;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -44,7 +45,7 @@ public class ConvenienceMethods {
     return newIntent;
   }
   
-  public static void startScenarioFromFolder(String folder, Context context){
+  public static void startScenarioFromFolder(String folder, Context context, String targetName){
 		String xmlPath = folder;
 
 		File workingDir = new File(xmlPath);
@@ -81,8 +82,22 @@ public class ConvenienceMethods {
 				
 				if (ConvenienceMethods.SZENARIO.getDevice().equals(Scenario.Device.MOBILE)) {
 					ConvenienceMethods.IMAGE_DIR = xmlPath + "/";
-					Intent newIntent = ConvenienceMethods.getNewIntent(ConvenienceMethods.SZENARIO.getStartScreen(), context);
-					context.startActivity(newIntent);
+					
+					//if certain target is specified to be launched do it
+					if (targetName != null) {
+						Screen screen = ConvenienceMethods.SZENARIO.getScreen(targetName);
+						
+						if (screen == null) {
+							throw new RuntimeException("Couldn't find target for "+targetName);
+						}
+						Intent newIntent = ConvenienceMethods.getNewIntent(screen, context);
+						context.startActivity(newIntent);
+					}
+					//else load start screen
+					else {
+						Intent newIntent = ConvenienceMethods.getNewIntent(ConvenienceMethods.SZENARIO.getStartScreen(), context);
+						context.startActivity(newIntent);
+					}
 				}
 				else {
 					ConvenienceMethods.showAlertDialog(context, "This scenario is not supposed to run on a mobile device");
