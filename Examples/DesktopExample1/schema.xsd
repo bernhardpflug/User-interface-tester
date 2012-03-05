@@ -11,9 +11,18 @@
 				<xs:choice maxOccurs="unbounded">
 					<xs:element minOccurs="0" maxOccurs="unbounded" ref="screenCollection" />
 					<xs:element minOccurs="0" maxOccurs="unbounded" ref="screen" />
+					<xs:element minOccurs="0" maxOccurs="unbounded" ref="slider" />
 				</xs:choice>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
+			<xs:attribute name="device" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="desktop" />
+						<xs:enumeration value="mobile" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 
@@ -54,15 +63,6 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				
-				<xs:element name="slider" minOccurs="0" maxOccurs="1">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="left" minOccurs="0"/>
-							<xs:element name="right" minOccurs="0"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
 
 				<xs:element name="menuButton" minOccurs="0" maxOccurs="1">
 					<xs:complexType>
@@ -90,8 +90,24 @@
 			</xs:sequence>
 
 			<xs:attribute name="id" type="xs:string" use="required" />
+			<xs:attribute name="scrollable" type="xs:boolean"/>
 		</xs:complexType>
 
+	</xs:element>
+
+	<!-- Slider -->
+	<xs:element name="slider">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element minOccurs="0" maxOccurs="unbounded" ref="screenCollection" />
+					<xs:element minOccurs="0" maxOccurs="unbounded" ref="screen" />
+				</xs:choice>
+			</xs:sequence>
+
+			<xs:attribute name="id" type="xs:string" use="required" />
+
+		</xs:complexType>
 	</xs:element>
 
 	<!-- Screen collection -->
@@ -129,8 +145,8 @@
 	<xs:element name="bounds">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:string" />
-			<xs:attribute name="x" type="xs:positiveInteger" use="required" />
-			<xs:attribute name="y" type="xs:positiveInteger" use="required" />
+			<xs:attribute name="x" type="xs:nonNegativeInteger" use="required" />
+			<xs:attribute name="y" type="xs:nonNegativeInteger" use="required" />
 			<xs:attribute name="w" type="xs:positiveInteger" use="required" />
 			<xs:attribute name="h" type="xs:positiveInteger" use="required" />
 		</xs:complexType>
