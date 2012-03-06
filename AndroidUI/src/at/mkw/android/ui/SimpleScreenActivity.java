@@ -49,4 +49,9 @@ public class SimpleScreenActivity extends BasicActivity {
 		
 	}
 
+	@Override
+	public void setDebug(boolean debug) {
+		activeView.setDebug(debug);
+	}
+
 }

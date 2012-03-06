@@ -37,7 +37,7 @@ public class ScreenView extends android.widget.ScrollView {
 	
 	private ArrayList<GestureOverlayView> buttonPanels;
 	
-	private ImageView imageView;
+	private NewImageView imageView;
 	
 	public ScreenView(final Context context, Window window) {
 		super(context);
@@ -50,11 +50,13 @@ public class ScreenView extends android.widget.ScrollView {
 		AbsoluteLayout layout = new AbsoluteLayout(context);
 
 		// image
-		imageView = new ImageView(context,window);
-		imageView.onDisplay();
+		imageView = new NewImageView(context,window);
+//		imageView.onDisplay();
 
 		layout.addView(imageView);
-
+		
+		this.addView(layout);
+		
 		// add buttons
 		ButtonListener bListener = new ButtonListener() {
 			public void actionPerformed(ButtonEvent event) {
@@ -79,7 +81,7 @@ public class ScreenView extends android.widget.ScrollView {
 			layout.addView(linkPanel, params);
 		}
 		
-		this.addView(layout);
+		
 	}
 	
 	/**
@@ -91,6 +93,7 @@ public class ScreenView extends android.widget.ScrollView {
 		for (GestureOverlayView linkpanel : buttonPanels) {
 
 			if (debug) {
+//				linkpanel.setBackgroundColor(Color.BLUE);
 				linkpanel.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.my_border));
 			} else {
 				linkpanel.setBackgroundColor(Color.TRANSPARENT);
@@ -99,7 +102,7 @@ public class ScreenView extends android.widget.ScrollView {
 	}
 	
 	public void onDisappear() {
-		imageView.onDisappear();
+//		imageView.onDisappear();
 	}
 	
 	/**
